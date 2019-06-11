@@ -6,13 +6,13 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class DayRatePaymentCalculatorTest {
+public class DayPaymentCalculatorTest {
 
-    private DayRatePaymentCalculator paymentCalculator;
+    private DayPaymentCalculator paymentCalculator;
 
     @Before
     public void setup() {
-        paymentCalculator = new DayRatePaymentCalculator();
+        paymentCalculator = new DayPaymentCalculator();
     }
 
     @Test

@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class DayRatePaymentCalculator implements PaymentCalculator {
+public class DayPaymentCalculator implements PaymentCalculator {
 
     @Override
     public BigDecimal calculatePayment(String timesheetContents) {
@@ -20,20 +20,10 @@ public class DayRatePaymentCalculator implements PaymentCalculator {
 
         List<BigDecimal> dayPayments = days.stream().map(day->{
             String[] info  = day.split(",");
-            return calculateDayPayment(TalentRate.valueOf(info[1].toUpperCase()), parseInt(info[2]));
+            Talent talent = TalentFactory.getTalent(info[1]);
+            return talent.calculateDayPayment(parseInt(info[2]));
         }).collect(Collectors.toList());
 
         return dayPayments.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
-    }
-
-
-    private BigDecimal calculateDayPayment(TalentRate rate, int hours) {
-        if (hours > 8) {
-            return rate.getRate().multiply(BigDecimal.valueOf(1.5));
-        } else if (hours > 0) {
-            return rate.getRate();
-        }
-
-        return BigDecimal.ZERO;
     }
 }

@@ -7,13 +7,13 @@ public enum TalentRate {
     STUNTMAN(120),
     WRITER(140);
 
-    private BigDecimal rate;
+    private BigDecimal dayRate;
 
-    public BigDecimal getRate() {
-        return rate;
+    public BigDecimal getDayRate() {
+        return dayRate;
     }
 
-    TalentRate(long rate) {
-        this.rate = BigDecimal.valueOf(rate);
+    TalentRate(long dayRate) {
+        this.dayRate = BigDecimal.valueOf(dayRate);
     }
 }
